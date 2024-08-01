@@ -4,14 +4,29 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "user")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	@Column(length = 30, nullable = false)
 	private String name;
+	@Column(length = 15, nullable = false)
 	private String cpf;
+	@Column(length = 15, nullable = false)
 	private LocalDate dt_Nasc;
+	@Column(length = 10, nullable = false)
 	private String genre;
 	
 	
