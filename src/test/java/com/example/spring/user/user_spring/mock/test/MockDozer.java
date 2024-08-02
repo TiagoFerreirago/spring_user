@@ -10,10 +10,10 @@ import com.example.spring.user.userspring.vo.v1.UserVO;
 
 public class MockDozer {
 
-	private String hr = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
-	private LocalDate date = LocalDate.parse(hr);
+	private String hr = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	private LocalDate date = LocalDate.parse(hr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	
-	private User mockUser(int number) {
+	public User mockUser(int number) {
 		User user = new User();
 		
 		user.setCpf("12345678910 " + number);
@@ -24,7 +24,7 @@ public class MockDozer {
 		return user;
 	}
 	
-	private UserVO mockUserVO(int number) {
+	public UserVO mockUserVO(int number) {
 		UserVO vo = new UserVO();
 		vo.setCpf("12345678910 "+number);
 		vo.setDt_Nasc(date);
@@ -34,7 +34,7 @@ public class MockDozer {
 		return vo;
 	}
 	
-	private List<User> mockListUser(){
+	public  List<User> mockListUser(){
 		List<User>users = new ArrayList<>();
 		for(int i = 0; i < 10; i++) {
 			users.add(mockUser(i));
@@ -42,7 +42,7 @@ public class MockDozer {
 		return users;
 	}
 	
-	private List<UserVO> mockListUserVO(){
+	public  List<UserVO> mockListUserVO(){
 		List<UserVO> userVo = new ArrayList<>();
 		for(int i = 0; i < 10;i++) {
 			userVo.add(mockUserVO(i));
