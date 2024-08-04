@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +20,7 @@ import com.example.spring.user.userspring.service.UserService;
 import com.example.spring.user.userspring.vo.v1.UserVO;
 
 @RestController
-@RequestMapping(value = "/user")
+@RequestMapping(value = "/user/v1")
 public class UserController {
 
 	@Autowired
@@ -28,7 +29,7 @@ public class UserController {
 	
 	@RequestMapping(value = "/{id}",method = RequestMethod.GET,
 			produces = {MediaType.APPLICATION_JSON,MediaType.APPLICATION_XML,MediaType.APPLICATION_YML})
-	public UserVO findById(@RequestParam(value = "id") Long id) {
+	public UserVO findById(@PathVariable(value = "id") Long id) {
 		return service.findById(id);
 	}
 	
@@ -48,8 +49,8 @@ public class UserController {
 	public UserVO update(@RequestBody UserVO user) {
 		return service.update(user);
 	}
-	@DeleteMapping
-	public ResponseEntity<UserVO> delete(@RequestParam(value = "id") Long id){
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<UserVO> delete(@PathVariable(value = "id") Long id){
 		service.delete(id);
 		return ResponseEntity.noContent().build();
 	}
