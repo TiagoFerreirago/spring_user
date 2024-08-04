@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class UserVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -12,6 +14,7 @@ public class UserVO implements Serializable {
 	private Long id;
 	private String name;
 	private String cpf;
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dt_Nasc;
 	private String genre;
 	
@@ -91,4 +94,6 @@ public class UserVO implements Serializable {
 				&& Objects.equals(name, other.name);
 	}
 
+
+	
 }

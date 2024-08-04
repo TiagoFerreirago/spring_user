@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,7 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users")
 public class User implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
@@ -20,11 +22,12 @@ public class User implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(length = 30, nullable = false)
+	@Column(name = "nome", length = 30, nullable = false)
 	private String name;
 	@Column(length = 15, nullable = false)
 	private String cpf;
-	@Column(length = 15, nullable = false)
+	@Column(name= "dt_nasc",nullable = false)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dt_Nasc;
 	@Column(length = 10, nullable = false)
 	private String genre;
@@ -104,6 +107,8 @@ public class User implements Serializable{
 				&& Objects.equals(genre, other.genre) && Objects.equals(id, other.id)
 				&& Objects.equals(name, other.name);
 	}
+
+
 	
-	
+
 }
