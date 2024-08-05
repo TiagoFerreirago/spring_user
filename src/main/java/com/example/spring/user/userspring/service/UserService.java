@@ -11,6 +11,7 @@ import com.example.spring.user.userspring.controller.UserController;
 import com.example.spring.user.userspring.dozermapper.DozerMapper;
 import com.example.spring.user.userspring.entities.User;
 import com.example.spring.user.userspring.exception.handler.HandlerNotFoundException;
+import com.example.spring.user.userspring.exception.handler.HandlerNotFoundUserNullException;
 import com.example.spring.user.userspring.repository.UserRepository;
 import com.example.spring.user.userspring.vo.v1.UserVO;
 
@@ -37,6 +38,9 @@ public class UserService {
 	}
 	@Transactional
 	public UserVO create(UserVO user) {
+		if(user == null) {
+			throw new HandlerNotFoundUserNullException();
+		}
 		User entity = DozerMapper.parseEntityForVO(user, User.class);
 		UserVO vo = DozerMapper.parseEntityForVO(repository.save(entity), UserVO.class);
 		vo.add(linkTo(methodOn(UserController.class).findById(user.getKey())).withSelfRel());
@@ -44,12 +48,15 @@ public class UserService {
 	}
 	@Transactional
 	public UserVO update(UserVO user) {
+		if(user == null) {
+			throw new HandlerNotFoundUserNullException();
+		}
 		User entity = repository.findById(user.getKey()).orElseThrow( () -> new HandlerNotFoundException("User Not Found"));
 		entity.setCpf(user.getCpf());
 		entity.setDt_Nasc(user.getDt_Nasc());
 		entity.setGenre(user.getGenre());
 		entity.setName(user.getName());
-		UserVO vo = DozerMapper.parseEntityForVO(entity, UserVO.class);
+		UserVO vo = DozerMapper.parseEntityForVO(repository.save(entity), UserVO.class);
 		vo.add(linkTo(methodOn(UserController.class).findById(vo.getKey())).withSelfRel());
 		return vo;
 	}

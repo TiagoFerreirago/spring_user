@@ -10,8 +10,8 @@ import com.example.spring.user.userspring.vo.v1.UserVO;
 
 public class MockDozer {
 
-	private String hr = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-	private LocalDate date = LocalDate.parse(hr, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	private LocalDate date = LocalDate.now();
+	
 	
 	public User mockUser(int number) {
 		User user = new User();
@@ -20,7 +20,7 @@ public class MockDozer {
 		user.setDt_Nasc(date);
 		user.setGenre((number%2==0 ? "Male " : "Female ")+number);
 		user.setId(Long.valueOf(number));
-		user.setName("Guilhermo "+number);
+		user.setName((number%2==0 ? "Guilhermo "+number:"Catharine "+number));
 		return user;
 	}
 	
@@ -29,8 +29,8 @@ public class MockDozer {
 		vo.setCpf("12345678910 "+number);
 		vo.setDt_Nasc(date);
 		vo.setGenre((number % 2 == 0 ? "Male " : "Female ")+number);
-		vo.setId(Long.valueOf(number));
-		vo.setName("Guilhermo "+number);
+		vo.setKey(Long.valueOf(number));
+		vo.setName(number%2==0 ? "Guilhermo "+number:"Catharine "+number);
 		return vo;
 	}
 	

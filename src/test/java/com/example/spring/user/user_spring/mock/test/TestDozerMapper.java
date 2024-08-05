@@ -27,11 +27,11 @@ public class TestDozerMapper {
 	@Test
 	void testParseUserForVo() {
 		UserVO vo = DozerMapper.parseEntityForVO(mock.mockUser(), UserVO.class);
-		vo.setId(1L);
+		vo.setKey(1L);
 		assertEquals("12345678910 0",vo.getCpf());
 		assertEquals(convertDate,vo.getDt_Nasc());
 		assertEquals("Male 0",vo.getGenre());
-		assertEquals(1L, vo.getId());
+		assertEquals(1L, vo.getKey());
 		assertEquals("Guilhermo 0",vo.getName());
 	}
 	@Test
@@ -83,7 +83,7 @@ public class TestDozerMapper {
 		assertEquals("12345678910 2",voTwo.getCpf());
 		assertEquals(convertDate,voTwo.getDt_Nasc());
 		assertEquals("Male 2",voTwo.getGenre());
-		assertEquals(2L,voTwo.getId());
+		assertEquals(2L,voTwo.getKey());
 		assertEquals("Guilhermo 2",voTwo.getName());
 		
 		UserVO voFive = usersVo.get(5);
@@ -91,7 +91,7 @@ public class TestDozerMapper {
 		assertEquals("12345678910 5",voFive.getCpf());
 		assertEquals(convertDate,voFive.getDt_Nasc());
 		assertEquals("Female 5",voFive.getGenre());
-		assertEquals(5L,voFive.getId());
+		assertEquals(5L,voFive.getKey());
 		assertEquals("Guilhermo 5",voFive.getName());
 		
 		UserVO voEight = usersVo.get(8);
@@ -99,7 +99,7 @@ public class TestDozerMapper {
 		assertEquals("12345678910 8",voEight.getCpf());
 		assertEquals(convertDate,voEight.getDt_Nasc());
 		assertEquals("Male 8",voEight.getGenre());
-		assertEquals(8L,voEight.getId());
+		assertEquals(8L,voEight.getKey());
 		assertEquals("Guilhermo 8",voEight.getName());
 	}
 	

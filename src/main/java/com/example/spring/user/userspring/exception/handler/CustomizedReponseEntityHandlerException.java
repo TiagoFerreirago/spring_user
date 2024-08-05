@@ -25,4 +25,9 @@ public class CustomizedReponseEntityHandlerException {
 		ExceptionResponse response = new ExceptionResponse(ex.getMessage(),web.getDescription(false),LocalDate.now());
 		return new ResponseEntity<>(response,HttpStatus.NOT_FOUND);
 	}
+	@ExceptionHandler(HandlerNotFoundUserNullException.class)
+	public ResponseEntity<ExceptionResponse> handlelNullUserException(Exception ex, WebRequest web){
+		ExceptionResponse response = new ExceptionResponse(ex.getMessage(), web.getDescription(false), LocalDate.now());
+		return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
+	}
 }
