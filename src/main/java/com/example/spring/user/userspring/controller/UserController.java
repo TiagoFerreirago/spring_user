@@ -20,7 +20,7 @@ import com.example.spring.user.userspring.service.UserService;
 import com.example.spring.user.userspring.vo.v1.UserVO;
 
 @RestController
-@RequestMapping(value = "/user/v1")
+@RequestMapping(value = "/api/user/v1")
 public class UserController {
 
 	@Autowired
